@@ -63,3 +63,7 @@ button {
   font-size: 3rem;
   
 }
+
+button:hover {
+  background-color: #2403fc;
+}
