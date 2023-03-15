@@ -26,22 +26,21 @@ keys.addEventListener('click', event => {
 const calculator = {
   displayText: '0',
   prevTotal: null,
-
-
-  parseInput(value){
-   if(this.displayText === '0'){
-      this.displayValue = '';
+  
+  parseInput (value){
         // sort through "special buttons" to check if  clicked.
-    switch(value){
+    switch (value){
       case '=':
         this.calcAnswer(this.displayText)
        // calculate answer.
         break;
-        case 'AC':
+        
+      case 'AC':
         this.clearAll()
         // clear screen plus stored values
         break;
-        case '.':
+        
+      case '.':
         if (this.displayText == 0){
           this.addText('0.')
           // pass '0.' into add text method.
@@ -87,7 +86,7 @@ const calculator = {
   },
 
   calcAnswer(equation){
-    let result = Function('return' + equation)() //regex function
+    let result = Function('return ' + equation)() //regex function
       this.outputText(result)
     
   },
