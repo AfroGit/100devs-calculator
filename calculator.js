@@ -29,19 +29,20 @@ const calculator = {
 
 
   parseInput(value){
-    if(this.displayText === '0'){
+   if(this.displayText === '0'){
       this.displayValue = '';
-    }
         // sort through "special buttons" to check if  clicked.
     switch(value){
       case '=':
+        this.calcAnswer(this.displayText)
        // calculate answer.
         break;
         case 'AC':
+        this.clearAll()
         // clear screen plus stored values
         break;
         case '.':
-        if(this.displayText == 0){
+        if (this.displayText == 0){
           this.addText('0.')
           // pass '0.' into add text method.
         } else {
@@ -65,7 +66,7 @@ const calculator = {
 
   addText(value){
     if(this.displayText === '0'){
-      this.displayValue = '';
+      this.displayText = '';
     } else if(this.prevTotal !== null){
       this.displayText = this.prevTotal
       this.prevTotal = null
@@ -84,6 +85,18 @@ const calculator = {
   outputText(text){
     document.querySelector('.calculator-screen').value = text
   },
+
+  calcAnswer(equation){
+    let result = Function('return' + equation)() //regex function
+      this.outputText(result)
+    
+  },
+
+  clearAll(){
+    this.displayText = '0',
+    this.prevTotal = null,
+    this.outputText(this.displayText)
+  }
   
 };
 //
